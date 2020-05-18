@@ -14,9 +14,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="97dp"
-        android:layout_marginEnd="97dp"
-        android:layout_marginRight="97dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginRight="101dp"
         android:ems="10"
         android:hint="Login"
         android:inputType="textPersonName" />
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/login"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="61dp"
+        android:layout_marginTop="43dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword" />
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/password"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="48dp"
         android:text="LOGIN" />
 
     <Button
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="23dp"
         android:text="REGISTER" />
 
     <ImageView
@@ -59,10 +59,10 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="161dp"
-        android:layout_marginTop="-2dp"
-        android:layout_marginEnd="156dp"
-        android:layout_marginRight="156dp"
+        android:layout_marginStart="154dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="163dp"
+        android:layout_marginRight="163dp"
         app:srcCompat="@drawable/logo" />
 
 </RelativeLayout>

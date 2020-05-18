@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity {
                 String password = e2.getText().toString();
                 Boolean chkemailpass = db.emailpassword(email, password);
                 if(chkemailpass){
-                    Toast.makeText(getApplicationContext(), "Successfulll login", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Successful login", Toast.LENGTH_SHORT).show();
                     stopService(new Intent(Login.this, MusicService.class));
                     Intent i = new Intent(Login.this, ExpenseActivity.class);
                     i.putExtra("user", e1.getText().toString());
