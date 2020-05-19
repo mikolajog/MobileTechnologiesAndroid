@@ -37,6 +37,7 @@ public class SpendFragment extends Fragment {
 
         b1  = v.findViewById(R.id.backButton);
         et1 = v.findViewById(R.id.amountCash1);
+        et1.addTextChangedListener(new NumberTextWatcher(et1));
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override

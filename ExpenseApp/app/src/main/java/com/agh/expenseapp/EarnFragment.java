@@ -1,6 +1,8 @@
 package com.agh.expenseapp;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,10 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class EarnFragment extends Fragment {
     Button b1, b2;
@@ -27,6 +33,9 @@ public class EarnFragment extends Fragment {
         final Bundle arguments = new Bundle();
         arguments.putString("user", user);
         et1 = v.findViewById(R.id.amountCash1);
+        et1.addTextChangedListener(new NumberTextWatcher(et1));
+
+
         db = new DatabaseHelper(getContext());
 
         b2 = v.findViewById(R.id.earnSomeMoneyButton);
