@@ -50,9 +50,9 @@ public class Register extends AppCompatActivity {
                     if (chkemail) {
                         boolean insert = db.insertUser(s1, s2);
                         if (insert) {
-                            Toast.makeText(getApplicationContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(Register.this, Login.class);
                             startActivity(i);
+                            Toast.makeText(getApplicationContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         Toast.makeText(getApplicationContext(), "Email already exists", Toast.LENGTH_SHORT).show();

@@ -45,6 +45,11 @@ public class EarnFragment extends Fragment {
             public void onClick(View v) {
                 db.insertPositiveBalance(user, et1.getText().toString(), "incoming");
                 // validating fields and adding to DB
+                StatisticsFragment statisticsFragment = new StatisticsFragment();
+                statisticsFragment.setArguments(arguments);
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.expenseLayout, statisticsFragment);
+                transaction.commit();
                 Toast.makeText(getContext(), "Congrats on earning money!", Toast.LENGTH_LONG).show();
             }
         });

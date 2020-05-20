@@ -57,6 +57,11 @@ public class SpendFragment extends Fragment {
             public void onClick(View v) {
                 db.insertNegativeBalance(user, et1.getText().toString(), spinner.getSelectedItem().toString());
                 // validating fields and adding to DB
+                StatisticsFragment statisticsFragment = new StatisticsFragment();
+                statisticsFragment.setArguments(arguments);
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.expenseLayout, statisticsFragment);
+                transaction.commit();
                 Toast.makeText(getContext(), "You've just spent money!", Toast.LENGTH_LONG).show();
             }
         });

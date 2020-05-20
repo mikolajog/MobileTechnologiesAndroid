@@ -4,38 +4,65 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="BACK"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/earnSomeMoneyButton" />
-
-    <Button
-        android:id="@+id/dropButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="YES"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="200dp"
+        android:layout_height="350dp"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="137dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="140dp"
-        android:text="Are you sure?"
-        android:textSize="14sp"
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Are you sure?"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/dropButton"
+            android:layout_width="130dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="48dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            android:layout_marginVertical="30dp"
+            android:text="YES"
+             />
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="130dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:background="@color/colorPrimaryGray"
+            android:layout_marginVertical="140dp"
+            android:text="BACK"
+            android:textColor="@android:color/black"
+            app:layout_constraintHorizontal_bias="0.498"/>
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton" />
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/logo" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
