@@ -1,17 +1,11 @@
 <resources>
-    <string name="app_name">ExpenseApp</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>z
-
-
-        <string-array name="spend_purpose_array">
-            <item>Bills</item>
-            <item>Shopping</item>
-            <item>Mortgage Rate</item>
-            <item>Food</item>
-            <item>Party</item>
-        </string-array>
-
+    <string name="app_name">Expense App</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="earn">Earn</string>
+    <string name="spend">Spend</string>
+    <string name="statistics">Statistics</string>
+    <string name="reset">Reset</string>
+    <string name="back">BACK</string>
+    <string name="amount_cash_in_pln">Amount cash in PLN</string>
 
 </resources>

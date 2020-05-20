@@ -22,7 +22,7 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ADD NEW SPENDING"
+            android:text="NEW SPENDING"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -33,23 +33,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="24dp"
+            android:gravity="center"
+            android:layout_gravity="center"
             android:ems="10"
-            android:hint="Amount cash in PLN"
+            android:hint="@string/amount_cash_in_pln"
             android:inputType="number"
             app:layout_constraintHorizontal_bias="0.505" />
 
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Purpose"
-            android:layout_marginVertical="10dp"
-            android:gravity="center"
-            android:textSize="18sp" />
         <Spinner
             android:id="@+id/spinner"
             android:layout_marginVertical="10dp"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <Button
@@ -57,7 +52,7 @@
             android:layout_width="130dp"
             android:layout_height="36dp"
             android:layout_gravity="center"
-            android:text="SPEND SOME MONEY"
+            android:text="@string/spend"
             android:background="@color/colorPrimary"
             android:textColor="@android:color/white"
             android:layout_marginVertical="30dp"
@@ -68,7 +63,7 @@
             android:layout_width="130dp"
             android:layout_height="36dp"
             android:layout_gravity="center"
-            android:text="BACK"
+            android:text="@string/back"
             android:background="@color/colorPrimaryGray"
             android:textColor="@android:color/black"
             app:layout_constraintHorizontal_bias="0.498"/>

@@ -1,0 +1,11 @@
+<resources>
+    <string-array name="spend_purpose_array">
+        <item>Bills</item>
+        <item>Shopping</item>
+        <item>Mortgage Rate</item>
+        <item>Food</item>
+        <item>Party</item>
+        <item>Gifts</item>
+        <item>Others</item>
+    </string-array>
+</resources>

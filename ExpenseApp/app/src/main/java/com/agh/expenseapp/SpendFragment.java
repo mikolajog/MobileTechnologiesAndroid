@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -17,8 +17,11 @@ public class SpendFragment extends Fragment {
 
     private Button b1, b2;
     private EditText et1;
-    private Spinner spinner;
     DatabaseHelper db;
+    String[] spinnerTitles;
+    int[] spinnerImages;
+    private Spinner spinner;
+    String selectedText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,7 +38,7 @@ public class SpendFragment extends Fragment {
         arguments.putString("user", user);
 
 
-        b1  = v.findViewById(R.id.backButton);
+        b1 = v.findViewById(R.id.backButton);
         et1 = v.findViewById(R.id.amountCash1);
         et1.addTextChangedListener(new NumberTextWatcher(et1));
 
@@ -55,7 +58,7 @@ public class SpendFragment extends Fragment {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db.insertNegativeBalance(user, et1.getText().toString(), spinner.getSelectedItem().toString());
+                db.insertNegativeBalance(user, et1.getText().toString(), selectedText);
                 // validating fields and adding to DB
                 StatisticsFragment statisticsFragment = new StatisticsFragment();
                 statisticsFragment.setArguments(arguments);
@@ -66,15 +69,43 @@ public class SpendFragment extends Fragment {
             }
         });
 
-        spinner = (Spinner) v.findViewById(R.id.spinner);
-// Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
-            R.array.spend_purpose_array, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+//        spinner = (Spinner) v.findViewById(R.id.spinner);
+//// Create an ArrayAdapter using the string array and a default spinner layout
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+//            R.array.spend_purpose_array, android.R.layout.simple_spinner_item);
+//// Specify the layout to use when the list of choices appears
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//// Apply the adapter to the spinner
+//        spinner.setAdapter(adapter);
 
+        spinner = v.findViewById(R.id.spinner);
+        spinnerTitles = getResources().getStringArray(R.array.spend_purpose_array);
+        spinnerImages = new int[]{
+                R.drawable.icon_bills,
+                R.drawable.icon_shopping,
+                R.drawable.icon_mortgage,
+                R.drawable.icon_food,
+                R.drawable.icon_party,
+                R.drawable.icon_gift,
+                R.drawable.icon_others
+        };
+
+        CustomAdapter mCustomAdapter = new CustomAdapter(getContext(), spinnerTitles, spinnerImages);
+        spinner.setAdapter(mCustomAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedText = spinnerTitles[i];
+                Toast.makeText(getContext(), spinnerTitles[i], Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         return v;
     }
 

@@ -34,32 +34,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
-            android:text="Statistics"
-            android:textColor="@color/colorPrimaryDark" />
+            android:text="@string/statistics"
+            android:background="@color/colorPrimaryLight"
+            android:textColor="@android:color/white"  />
 
         <Button
             android:id="@+id/earnButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
-            android:text="Earn"
-            android:textColor="@color/colorPrimaryDark" />
+            android:text="@string/earn"
+            android:background="@color/colorPrimaryLight"
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/spendButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
-            android:text="Spend"
-            android:textColor="@color/colorPrimaryDark" />
+            android:text="@string/spend"
+            android:background="@color/colorPrimaryLight"
+            android:textColor="@android:color/white"  />
 
         <Button
             android:id="@+id/resetButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
-            android:text="Reset"
-            android:textColor="@color/colorPrimaryDark" />
+            android:text="@string/reset"
+            android:background="@color/colorPrimaryLight"
+            android:textColor="@android:color/white"  />
     </LinearLayout>
 
     <ImageView

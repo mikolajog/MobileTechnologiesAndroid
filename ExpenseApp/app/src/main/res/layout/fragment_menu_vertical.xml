@@ -41,32 +41,36 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
             android:layout_weight="0.5"
-            android:text="Earn"
-            android:textColor="@color/colorPrimaryDark" />
+            android:text="@string/earn"
+            android:background="@color/colorPrimaryLight"
+            android:textColor="@android:color/white"  />
         <Button
             android:id="@+id/spendButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:layout_marginHorizontal="15dp"
-            android:text="Spend"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:text="@string/spend"
+            android:background="@color/colorPrimaryLight"
+            android:textColor="@android:color/white" />
         <Button
             android:id="@+id/statisticsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:layout_marginHorizontal="15dp"
-            android:text="Statistics"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:text="@string/statistics"
+            android:background="@color/colorPrimaryLight"
+            android:textColor="@android:color/white" />
         <Button
             android:id="@+id/resetButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:layout_marginHorizontal="15dp"
-            android:text="Reset"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:text="@string/reset"
+            android:background="@color/colorPrimaryLight"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 
