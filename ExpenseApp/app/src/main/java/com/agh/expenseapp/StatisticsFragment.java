@@ -48,17 +48,17 @@ public class StatisticsFragment extends Fragment {
         c.moveToFirst();
         String summary="";
 
-        List<MyListData> myListData = new ArrayList();
+        List<SummaryListData> summaryListData = new ArrayList();
         if (c.moveToFirst()){
             do {
-                myListData.add(new MyListData(c.getString(2) + " " + c.getString(3), getProperCategoryIcon(c.getString(3))));
+                summaryListData.add(new SummaryListData(c.getString(2), c.getString(3), getProperCategoryIcon(c.getString(3))));
             } while(c.moveToNext());
         }
         c.close();
         db.close();
 
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
-        MyListAdapter adapter = new MyListAdapter(myListData);
+        SummaryListAdapter adapter = new SummaryListAdapter(summaryListData);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);

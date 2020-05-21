@@ -82,7 +82,7 @@ public class SpendFragment extends Fragment {
                 R.drawable.icon_others
         };
 
-        CustomSpinnerAdapter customAdapter = new CustomSpinnerAdapter(getContext(), spinnerTitles, spinnerImages);
+        SpinnerAdapter customAdapter = new SpinnerAdapter(getContext(), spinnerTitles, spinnerImages);
         spinner.setAdapter(customAdapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

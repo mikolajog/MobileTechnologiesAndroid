@@ -13,11 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 
-public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder> {
+public class SummaryListAdapter extends RecyclerView.Adapter<SummaryListAdapter.ViewHolder> {
 
-    private List<MyListData> listdata;
+    private List<SummaryListData> listdata;
 
-    public MyListAdapter(List<MyListData> listdata) {
+    public SummaryListAdapter(List<SummaryListData> listdata) {
         this.listdata = listdata;
     }
 
@@ -33,13 +33,14 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final MyListData myListData = listdata.get(position);
-        holder.textView.setText(listdata.get(position).getDescription());
+        final SummaryListData summaryListData = listdata.get(position);
+        holder.textView.setText(listdata.get(position).getValue());
+        holder.textView2.setText(listdata.get(position).getPurpose());
         holder.imageView.setImageResource(listdata.get(position).getImgId());
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(),"click on item: "+myListData.getDescription(), Toast.LENGTH_LONG).show();
+                Toast.makeText(view.getContext(),"click on item: "+ summaryListData.getValue(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -49,17 +50,16 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         return listdata.size();
     }
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
         public TextView textView;
+        public TextView textView2;
         public RelativeLayout relativeLayout;
         public ViewHolder(View itemView) {
             super(itemView);
             this.imageView = (ImageView) itemView.findViewById(R.id.imageView);
-            this.textView = (TextView) itemView.findViewById(R.id.textView);
+            this.textView = (TextView) itemView.findViewById(R.id.textViewList1);
+            this.textView2 = (TextView) itemView.findViewById(R.id.textViewList2);
             relativeLayout = (RelativeLayout)itemView.findViewById(R.id.relativeLayout);
         }
     }

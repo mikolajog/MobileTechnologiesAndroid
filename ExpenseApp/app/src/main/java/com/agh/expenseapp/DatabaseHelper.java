@@ -31,8 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("email", email);
         contentValues.put("password", password);
         long ins = db.insert("user", null, contentValues);
-        if(ins==-1){return false;}
-        else{return true;}
+        return ins != -1;
     }
 
     //inserting to balance table (earning)
@@ -43,8 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("amount", amount);
         contentValues.put("purpose", purpose);
         long ins = db.insert("balance", null, contentValues);
-        if(ins==-1){return false;}
-        else{return true;}
+        return ins != -1;
     }
 
     //inserting to balance table (spending)
@@ -55,8 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("amount", "-"+amount);
         contentValues.put("purpose", purpose);
         long ins = db.insert("balance", null, contentValues);
-        if(ins==-1){return false;}
-        else{return true;}
+        return ins != -1;
     }
 
     //getting values from balance for particular user
@@ -85,8 +82,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Boolean chkemail(String email){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("Select * from user where email=?", new String[]{email});
-        if(cursor.getCount()>0){return false;}
-        else{return true;}
+        return cursor.getCount() <= 0;
     }
 
     //check email and password
