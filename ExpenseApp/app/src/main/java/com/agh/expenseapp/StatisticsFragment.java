@@ -1,6 +1,7 @@
 package com.agh.expenseapp;
 
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ public class StatisticsFragment extends Fragment {
 
     Button b1;
     TextView tv1;
+    TextView tv2;
     DatabaseHelper db;
 
     @Override
@@ -35,12 +37,14 @@ public class StatisticsFragment extends Fragment {
         // initialization
         b1  = v.findViewById(R.id.backButton);
         tv1 = v.findViewById(R.id.textView2);
+        tv2 = v.findViewById(R.id.textSummary);
 
         //gathering data from balance for particular user
         db = new DatabaseHelper(getContext());
         Cursor c = db.getBalance(user);
         c.moveToFirst();
         String result = "";
+        String summary="";
 
         if (c.moveToFirst()){
             do {
@@ -52,10 +56,15 @@ public class StatisticsFragment extends Fragment {
                 // Do something Here with values
             } while(c.moveToNext());
         }
-        result += db.getBalanceSum(user);
         c.close();
         db.close();
         tv1.setText(result);
+        summary = db.getBalanceSum(user);
+        tv2.setText("PLN " + summary);
+        if(Double.parseDouble(summary) <= 0)
+            tv2.setTextColor(Color.RED);
+        else tv2.setTextColor(Color.GREEN);
+
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override

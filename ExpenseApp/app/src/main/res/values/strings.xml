@@ -7,5 +7,6 @@
     <string name="reset">Reset</string>
     <string name="back">BACK</string>
     <string name="amount_cash_in_pln">Amount cash in PLN</string>
+    <string name="menu">MENU</string>
 
 </resources>
