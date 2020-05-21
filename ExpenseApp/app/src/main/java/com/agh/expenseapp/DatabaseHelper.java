@@ -91,10 +91,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //check email and password
     public Boolean emailpassword(String email, String password){
+        if(email.isEmpty() || password.isEmpty())
+            return false;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("Select * from user where email=? and password=?", new String[]{email, password});
-        if(cursor.getCount()>0){return true;}
-        else{return false;}
+        return cursor.getCount() > 0;
     }
 
 }

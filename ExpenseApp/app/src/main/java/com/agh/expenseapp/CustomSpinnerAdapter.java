@@ -11,13 +11,13 @@ import android.widget.TextView;
 
 
 
-public class CustomAdapter extends ArrayAdapter<String> {
+public class CustomSpinnerAdapter extends ArrayAdapter<String> {
 
     String[] spinnerTitles;
     int[] spinnerImages;
     Context context;
 
-    public CustomAdapter(Context context, String[] titles, int[] images) {
+    public CustomSpinnerAdapter(Context context, String[] titles, int[] images) {
         super(context, R.layout.custom_spinner_row);
         this.spinnerTitles = titles;
         this.spinnerImages = images;

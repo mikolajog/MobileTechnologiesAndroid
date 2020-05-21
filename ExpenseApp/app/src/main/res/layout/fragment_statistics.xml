@@ -24,7 +24,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="500dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -55,15 +55,16 @@
             android:textStyle="bold"
             app:layout_constraintHorizontal_bias="0.498" />
 
-
-        <TextView
-            android:id="@+id/textView2"
+        <androidx.recyclerview.widget.RecyclerView
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="128dp"
-            android:gravity="center"
-            android:text="Statistics"
-            app:layout_constraintHorizontal_bias="0.498" />
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:layout_marginHorizontal="25dp"
+            android:id="@+id/recyclerView"
+            tools:context=".MainActivity">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 

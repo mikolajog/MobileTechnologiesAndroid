@@ -43,7 +43,7 @@ public class EarnFragment extends Fragment {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db.insertPositiveBalance(user, et1.getText().toString(), "incoming");
+                db.insertPositiveBalance(user, et1.getText().toString(), "Incoming");
                 // validating fields and adding to DB
                 StatisticsFragment statisticsFragment = new StatisticsFragment();
                 statisticsFragment.setArguments(arguments);

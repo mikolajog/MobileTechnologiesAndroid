@@ -11,12 +11,16 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StatisticsFragment extends Fragment {
 
     Button b1;
     TextView tv1;
-    TextView tv2;
     DatabaseHelper db;
 
     @Override
@@ -36,34 +40,35 @@ public class StatisticsFragment extends Fragment {
 
         // initialization
         b1  = v.findViewById(R.id.backButton);
-        tv1 = v.findViewById(R.id.textView2);
-        tv2 = v.findViewById(R.id.textSummary);
+        tv1 = v.findViewById(R.id.textSummary);
 
         //gathering data from balance for particular user
         db = new DatabaseHelper(getContext());
         Cursor c = db.getBalance(user);
         c.moveToFirst();
-        String result = "";
         String summary="";
 
+        List<MyListData> myListData = new ArrayList();
         if (c.moveToFirst()){
             do {
-                // Passing values
-                result += c.getString(0) + " ";
-                result += c.getString(1) + " ";
-                result += c.getString(2) + " ";
-                result += c.getString(3) + "\n";
-                // Do something Here with values
+                myListData.add(new MyListData(c.getString(2) + " " + c.getString(3), getProperCategoryIcon(c.getString(3))));
             } while(c.moveToNext());
         }
         c.close();
         db.close();
-        tv1.setText(result);
+
+        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
+        MyListAdapter adapter = new MyListAdapter(myListData);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(adapter);
+
+
         summary = db.getBalanceSum(user);
-        tv2.setText("PLN " + summary);
+        tv1.setText("PLN " + summary);
         if(Double.parseDouble(summary) <= 0)
-            tv2.setTextColor(Color.RED);
-        else tv2.setTextColor(Color.GREEN);
+            tv1.setTextColor(Color.RED);
+        else tv1.setTextColor(Color.GREEN);
 
 
         b1.setOnClickListener(new View.OnClickListener() {
@@ -80,4 +85,26 @@ public class StatisticsFragment extends Fragment {
         return v;
     }
 
+    private int getProperCategoryIcon(String name) {
+        switch (name) {
+            case "Bills":
+                return R.drawable.icon_bills;
+            case "Shopping":
+                return R.drawable.icon_shopping;
+            case "Mortgage Rate":
+                return R.drawable.icon_mortgage;
+            case "Food":
+                return R.drawable.icon_food;
+            case "Party":
+                return R.drawable.icon_party;
+            case "Gifts":
+                return R.drawable.icon_gift;
+            case "Others":
+                return R.drawable.icon_others;
+            case "Incoming":
+                return R.drawable.icon_income;
+            default:
+                return R.drawable.icon_question;
+        }
+    }
 }
