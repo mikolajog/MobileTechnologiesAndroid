@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="328dp"
+        android:layout_height="339dp"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.774"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Are you sure?"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/dropButton"
+            android:layout_width="130dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:layout_marginVertical="30dp"
+            android:layout_marginTop="48dp"
+            android:background="@color/colorPrimary"
+            android:text="YES"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="130dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:layout_marginVertical="140dp"
+            android:background="@color/colorPrimaryGray"
+            android:text="@string/back"
+            android:textColor="@android:color/black"
+            app:layout_constraintHorizontal_bias="0.498" />
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.104"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/logo" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

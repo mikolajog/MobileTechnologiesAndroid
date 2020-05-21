@@ -2,6 +2,8 @@ package com.agh.expenseapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,8 +22,8 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         db = new DatabaseHelper(this);
-        e1 = (EditText)findViewById(R.id.login);
-        e2 = (EditText)findViewById(R.id.password);
+        e1 = (EditText) findViewById(R.id.login);
+        e2 = (EditText) findViewById(R.id.password);
         b1 = (Button) findViewById(R.id.loginButton);
         b2 = (Button) findViewById(R.id.registerButton);
         b2.setOnClickListener(new View.OnClickListener() {
@@ -37,19 +39,25 @@ public class Login extends AppCompatActivity {
                 String email = e1.getText().toString();
                 String password = e2.getText().toString();
                 Boolean chkemailpass = db.emailpassword(email, password);
-                if(chkemailpass){
+                if (chkemailpass) {
                     Toast.makeText(getApplicationContext(), "Successful login", Toast.LENGTH_SHORT).show();
                     stopService(new Intent(Login.this, MusicService.class));
                     Intent i = new Intent(Login.this, ExpenseActivity.class);
                     i.putExtra("user", e1.getText().toString());
+                    e1.setText("");
+                    e2.setText("");
                     startActivity(i);
-                }
-                else{
+                } else {
                     Toast.makeText(getApplicationContext(), "Wrong email or password", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
     }
+
+    @Override
+    public void onBackPressed(){
+        e1 = (EditText) findViewById(R.id.login);
+        e2 = (EditText) findViewById(R.id.password);
+    }
+
 }
