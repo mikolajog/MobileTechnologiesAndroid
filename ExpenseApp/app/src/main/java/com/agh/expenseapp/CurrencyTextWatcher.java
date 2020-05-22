@@ -32,7 +32,7 @@ public class CurrencyTextWatcher implements TextWatcher {
             } catch (NumberFormatException e) {
                 parsed = 0.00;
             }
-            String formatted = NumberFormat.getCurrencyInstance().format((parsed/100)).replace("$", "").replace(",","");
+            String formatted = NumberFormat.getCurrencyInstance().format((parsed/100)).replaceAll("[^0-9.]+", "");
             current = formatted;
             et.setText(formatted);
             et.setSelection(formatted.length());

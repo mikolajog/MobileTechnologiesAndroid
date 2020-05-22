@@ -37,6 +37,10 @@ public class SummaryListAdapter extends RecyclerView.Adapter<SummaryListAdapter.
         holder.textView.setText(listdata.get(position).getValue());
         holder.textView2.setText(listdata.get(position).getPurpose());
         holder.imageView.setImageResource(listdata.get(position).getImgId());
+        if(holder.textView2.getText().equals("Incoming"))
+            holder.textView2.setTextColor(Color.parseColor("#117243"));
+        else
+            holder.textView2.setTextColor(Color.parseColor("#922D25"));
     }
 
     @Override
@@ -55,12 +59,6 @@ public class SummaryListAdapter extends RecyclerView.Adapter<SummaryListAdapter.
             this.textView = (TextView) itemView.findViewById(R.id.list_view_value);
             this.textView2 = (TextView) itemView.findViewById(R.id.list_view_purpose);
             relativeLayout = (RelativeLayout)itemView.findViewById(R.id.relativeLayout);
-
-
-            if(textView2.getText().equals("Incoming"))
-                textView2.setTextColor(Color.parseColor("#117243"));
-            else
-                textView2.setTextColor(Color.parseColor("#922D25"));
         }
     }
 }
