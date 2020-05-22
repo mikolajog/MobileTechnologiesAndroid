@@ -34,6 +34,11 @@ public class RestartFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 db.deleteBalance(user);
+                MenuFragment menuFragment = new MenuFragment();
+                menuFragment.setArguments(arguments);
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.expenseLayout, menuFragment);
+                transaction.commit();
                 Toast.makeText(getContext(), "Let's start from the beginning!", Toast.LENGTH_LONG).show();
             }
         });

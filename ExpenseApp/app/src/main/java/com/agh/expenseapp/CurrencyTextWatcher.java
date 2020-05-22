@@ -8,11 +8,11 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 
-public class NumberTextWatcher implements TextWatcher {
+public class CurrencyTextWatcher implements TextWatcher {
     private final EditText et;
     private String current;
 
-    public NumberTextWatcher(EditText editText) {
+    public CurrencyTextWatcher(EditText editText) {
         this.current="";
         this.et = editText;
     }
@@ -32,7 +32,7 @@ public class NumberTextWatcher implements TextWatcher {
             } catch (NumberFormatException e) {
                 parsed = 0.00;
             }
-            String formatted = NumberFormat.getCurrencyInstance().format((parsed/100)).replace("$", "");
+            String formatted = NumberFormat.getCurrencyInstance().format((parsed/100)).replace("$", "").replace(",","");
             current = formatted;
             et.setText(formatted);
             et.setSelection(formatted.length());

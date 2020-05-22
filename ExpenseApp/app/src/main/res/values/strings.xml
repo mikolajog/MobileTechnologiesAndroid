@@ -8,5 +8,11 @@
     <string name="back">BACK</string>
     <string name="amount_cash_in_pln">Amount cash in PLN</string>
     <string name="menu">MENU</string>
-
+    <string name="new_spending">NEW SPENDING</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="register">REGISTER</string>
+    <string name="login_btn">LOGIN</string>
+    <string name="summary">Summary</string>
+    <string name="general_balance">General balance</string>
 </resources>

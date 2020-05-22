@@ -25,7 +25,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,12 +34,12 @@
 
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/balance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="General balance"
+            android:text="@string/general_balance"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Summary"
+            android:text="@string/summary"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintHorizontal_bias="0.498" />
@@ -60,7 +60,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"
-            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="32dp"
             android:id="@+id/recyclerView"
             tools:context=".MainActivity">
 

@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="388dp"
+        android:layout_width="250dp"
         android:layout_height="294dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,39 +26,39 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
             android:ems="10"
-            android:hint="Login"
+            android:hint="@string/login"
             android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/login"
             android:layout_marginVertical="10dp"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword" />
-
-        <Button
-            android:id="@+id/registerButton"
-            android:layout_width="130dp"
-            android:layout_height="36dp"
-            android:layout_below="@+id/loginButton"
-            android:layout_gravity="center"
-            android:layout_marginVertical="30dp"
-            android:background="@color/colorPrimaryLight"
-            android:text="REGISTER"
-            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/loginButton"
             android:layout_width="130dp"
             android:layout_height="36dp"
             android:layout_gravity="center"
-            android:layout_marginVertical="10dp"
+            android:layout_marginVertical="32dp"
             android:background="@color/colorAccent"
-            android:text="LOGIN"
+            android:text="@string/login_btn"
             android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="130dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:layout_marginVertical="16dp"
+            android:background="@color/colorPrimaryLight"
+            android:text="@string/register"
+            android:textColor="@android:color/white" />
+
+
 
     </LinearLayout>
 

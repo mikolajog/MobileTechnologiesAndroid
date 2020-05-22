@@ -1,6 +1,5 @@
 package com.agh.expenseapp;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +47,7 @@ public class SpendFragment extends Fragment {
 
         b1 = v.findViewById(R.id.backButton);
         et1 = v.findViewById(R.id.amountCash1);
-        et1.addTextChangedListener(new NumberTextWatcher(et1));
+        et1.addTextChangedListener(new CurrencyTextWatcher(et1));
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +77,7 @@ public class SpendFragment extends Fragment {
                 if (Double.parseDouble(db.getBalanceSum(user)) < 0.0) {
                     flagBalance = false;
                 }
+
                 db.insertNegativeBalance(user, et1.getText().toString(), selectedText);
                 // validating fields and adding to DB
 

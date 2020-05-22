@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="402dp"
+        android:layout_width="250dp"
         android:layout_height="331dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="NEW SPENDING"
+            android:text="@string/new_spending"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp"
             android:textStyle="bold" />

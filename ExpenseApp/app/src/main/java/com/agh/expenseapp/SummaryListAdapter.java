@@ -1,12 +1,12 @@
 package com.agh.expenseapp;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,12 +37,6 @@ public class SummaryListAdapter extends RecyclerView.Adapter<SummaryListAdapter.
         holder.textView.setText(listdata.get(position).getValue());
         holder.textView2.setText(listdata.get(position).getPurpose());
         holder.imageView.setImageResource(listdata.get(position).getImgId());
-        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(view.getContext(),"click on item: "+ summaryListData.getValue(), Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
     @Override
@@ -58,9 +52,15 @@ public class SummaryListAdapter extends RecyclerView.Adapter<SummaryListAdapter.
         public ViewHolder(View itemView) {
             super(itemView);
             this.imageView = (ImageView) itemView.findViewById(R.id.imageView);
-            this.textView = (TextView) itemView.findViewById(R.id.textViewList1);
-            this.textView2 = (TextView) itemView.findViewById(R.id.textViewList2);
+            this.textView = (TextView) itemView.findViewById(R.id.list_view_value);
+            this.textView2 = (TextView) itemView.findViewById(R.id.list_view_purpose);
             relativeLayout = (RelativeLayout)itemView.findViewById(R.id.relativeLayout);
+
+
+            if(textView2.getText().equals("Incoming"))
+                textView2.setTextColor(Color.parseColor("#117243"));
+            else
+                textView2.setTextColor(Color.parseColor("#922D25"));
         }
     }
 }

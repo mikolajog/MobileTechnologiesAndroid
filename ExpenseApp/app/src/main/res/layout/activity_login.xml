@@ -24,17 +24,16 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:layout_marginVertical="10dp"
-            android:hint="Login"
+            android:hint="@string/login"
             android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/login"
             android:ems="10"
             android:layout_marginVertical="10dp"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword" />
 
         <Button
@@ -44,19 +43,18 @@
             android:layout_gravity="center"
             android:layout_marginVertical="10dp"
             android:background="@color/colorAccent"
-            android:text="LOGIN"
+            android:text="@string/login_btn"
             android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/registerButton"
             android:layout_width="130dp"
             android:layout_height="36dp"
-            android:layout_below="@+id/loginButton"
             android:layout_gravity="center"
             android:layout_marginVertical="30dp"
             android:background="@color/colorPrimaryLight"
             android:textColor="@android:color/white"
-            android:text="REGISTER" />
+            android:text="@string/register" />
 
     </LinearLayout>
 

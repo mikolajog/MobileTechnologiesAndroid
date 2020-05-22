@@ -21,6 +21,7 @@ public class StatisticsFragment extends Fragment {
 
     Button b1;
     TextView tv1;
+    TextView tv2;
     DatabaseHelper db;
 
     @Override
@@ -41,46 +42,53 @@ public class StatisticsFragment extends Fragment {
         // initialization
         b1  = v.findViewById(R.id.backButton);
         tv1 = v.findViewById(R.id.textSummary);
+        tv2 = v.findViewById(R.id.balance);
 
         //gathering data from balance for particular user
         db = new DatabaseHelper(getContext());
         Cursor c = db.getBalance(user);
-        c.moveToFirst();
-        String summary="";
+        String nodata = "NO DATA";
 
-        List<SummaryListData> summaryListData = new ArrayList();
-        if (c.moveToFirst()){
-            do {
-                summaryListData.add(new SummaryListData(c.getString(2), c.getString(3), getProperCategoryIcon(c.getString(3))));
-            } while(c.moveToNext());
+        if(!c.moveToFirst()){
+            tv2.setText(nodata);
+            tv1.setVisibility(View.INVISIBLE);
         }
-        c.close();
-        db.close();
-
-        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
-        SummaryListAdapter adapter = new SummaryListAdapter(summaryListData);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(adapter);
-
-
-        summary = db.getBalanceSum(user);
-        tv1.setText("PLN " + summary);
-        if(Double.parseDouble(summary) <= 0)
-            tv1.setTextColor(Color.RED);
-        else tv1.setTextColor(Color.GREEN);
-
-
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MenuFragment menuFragment = new MenuFragment();
-                menuFragment.setArguments(arguments);
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.expenseLayout, menuFragment);
-                transaction.commit();
+        else {
+            String summary = db.getBalanceSum(user);
+            
+            List<SummaryListData> summaryListData = new ArrayList();
+            if (c.moveToFirst()) {
+                do {
+                    summaryListData.add(new SummaryListData(c.getString(2), c.getString(3), getProperCategoryIcon(c.getString(3))));
+                } while (c.moveToNext());
             }
-        });
+            c.close();
+            db.close();
+
+            RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
+            SummaryListAdapter adapter = new SummaryListAdapter(summaryListData);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            recyclerView.setAdapter(adapter);
+
+
+              tv1.setText("PLN " + summary);
+
+            if (Double.parseDouble(summary) <= 0)
+                tv1.setTextColor(Color.RED);
+            else tv1.setTextColor(Color.GREEN);
+
+        }
+            b1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MenuFragment menuFragment = new MenuFragment();
+                    menuFragment.setArguments(arguments);
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.expenseLayout, menuFragment);
+                    transaction.commit();
+                }
+            });
 
         return v;
     }
