@@ -1,5 +1,6 @@
 package com.agh.expenseapp;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,8 +43,17 @@ public class EarnFragment extends Fragment {
                 StatisticsFragment statisticsFragment = new StatisticsFragment();
                 statisticsFragment.setArguments(arguments);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.expenseLayout, statisticsFragment);
-                transaction.commit();
+                MenuFragment menuFragment = new MenuFragment();
+                menuFragment.setArguments(arguments);
+                int orientation = getResources().getConfiguration().orientation;
+                if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    transaction.replace(R.id.fragment_container2, statisticsFragment);
+                    transaction.commit();
+                } else {
+                    transaction.replace(R.id.fragment_container, statisticsFragment);
+                    transaction.commit();
+                }
+
                 Toast.makeText(getContext(), "Congrats on earning money!", Toast.LENGTH_LONG).show();
             }
         });
@@ -56,7 +66,7 @@ public class EarnFragment extends Fragment {
                 MenuFragment menuFragment = new MenuFragment();
                 menuFragment.setArguments(arguments);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.expenseLayout, menuFragment);
+                transaction.replace(R.id.fragment_container, menuFragment);
                 transaction.commit();
             }
         });

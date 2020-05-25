@@ -2,35 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="130dp"
-        android:layout_height="36dp"
-        android:layout_gravity="center"
-        android:text="@string/back"
-        android:background="@color/colorPrimaryGray"
-        android:textColor="@android:color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="48dp"
-        android:layout_marginBottom="8dp"
- />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="76dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <TextView
@@ -56,14 +42,13 @@
             app:layout_constraintHorizontal_bias="0.498" />
 
         <androidx.recyclerview.widget.RecyclerView
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_gravity="center"
+            android:id="@+id/recyclerView"
             android:layout_width="500dp"
             android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            android:layout_marginTop="16dp"
+            android:layout_gravity="center"
             android:layout_marginHorizontal="32dp"
-            android:id="@+id/recyclerView"
+            android:layout_marginTop="16dp"
+            android:scrollbars="vertical"
             tools:context=".MainActivity">
 
         </androidx.recyclerview.widget.RecyclerView>

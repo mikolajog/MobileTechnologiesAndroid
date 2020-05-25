@@ -1,5 +1,6 @@
 package com.agh.expenseapp;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,9 +37,17 @@ public class RestartFragment extends Fragment {
                 db.deleteBalance(user);
                 MenuFragment menuFragment = new MenuFragment();
                 menuFragment.setArguments(arguments);
+                StatisticsFragment statisticsFragment = new StatisticsFragment();
+                statisticsFragment.setArguments(arguments);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.expenseLayout, menuFragment);
-                transaction.commit();
+                int orientation = getResources().getConfiguration().orientation;
+                if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    transaction.replace(R.id.fragment_container2, statisticsFragment);
+                    transaction.commit();
+                } else {
+                    transaction.replace(R.id.fragment_container, statisticsFragment);
+                    transaction.commit();
+                }
                 Toast.makeText(getContext(), "Let's start from the beginning!", Toast.LENGTH_LONG).show();
             }
         });
@@ -51,7 +60,7 @@ public class RestartFragment extends Fragment {
                 MenuFragment menuFragment = new MenuFragment();
                 menuFragment.setArguments(arguments);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.expenseLayout, menuFragment);
+                transaction.replace(R.id.fragment_container, menuFragment);
                 transaction.commit();
             }
         });

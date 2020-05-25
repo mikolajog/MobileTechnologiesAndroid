@@ -74,6 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT sum(amount) FROM balance WHERE email = '"+email+"'", null);
         c.moveToFirst();
+        System.out.println("\n\n\n\n\n"+c.getString(0)+"\n\n\n\n\n");
         return c.getString(0);
     }
 

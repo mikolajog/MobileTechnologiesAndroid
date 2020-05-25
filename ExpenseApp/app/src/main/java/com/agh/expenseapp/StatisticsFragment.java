@@ -1,5 +1,6 @@
 package com.agh.expenseapp;
 
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,7 +42,7 @@ public class StatisticsFragment extends Fragment {
         arguments.putString("user", user);
 
         // initialization
-        b1  = v.findViewById(R.id.backButton);
+
         tv1 = v.findViewById(R.id.textSummary);
         tv2 = v.findViewById(R.id.balance);
 
@@ -55,7 +57,7 @@ public class StatisticsFragment extends Fragment {
         }
         else {
             String summary = db.getBalanceSum(user);
-            
+
             List<SummaryListData> summaryListData = new ArrayList();
             if (c.moveToFirst()) {
                 do {
@@ -79,16 +81,20 @@ public class StatisticsFragment extends Fragment {
             else tv1.setTextColor(Color.GREEN);
 
         }
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            b1 = v.findViewById(R.id.backButton);
             b1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     MenuFragment menuFragment = new MenuFragment();
                     menuFragment.setArguments(arguments);
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.expenseLayout, menuFragment);
+                    transaction.replace(R.id.fragment_container, menuFragment);
                     transaction.commit();
                 }
             });
+        }
 
         return v;
     }

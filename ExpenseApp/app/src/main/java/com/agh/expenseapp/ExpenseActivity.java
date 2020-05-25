@@ -1,6 +1,7 @@
 package com.agh.expenseapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.app.ActivityManager;
@@ -14,40 +15,64 @@ import android.widget.Toast;
 
 public class ExpenseActivity extends AppCompatActivity {
 
+    String user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense);
-        String user = getIntent().getStringExtra("user");
+        user = getIntent().getStringExtra("user");
 
         Bundle arguments = new Bundle();
         arguments.putString("user", user);
 
         MenuFragment menuFragment = new MenuFragment();
         menuFragment.setArguments(arguments);
+
         StatisticsFragment statisticsFragment = new StatisticsFragment();
         statisticsFragment.setArguments(arguments);
+
+
+
         FragmentManager fm = getSupportFragmentManager();
-//        int orientation = getResources().getConfiguration().orientation;
-//        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//            fm.beginTransaction().add(R.id.fragment_container, menuFragment).commit();
-//            fm.beginTransaction().add(R.id.fragment_container2, statisticsFragment).commit();
-//        } else {
-//            fm.beginTransaction().add(R.id.expenseLayout, menuFragment).commit();
-//        }
-        fm.beginTransaction().add(R.id.expenseLayout, menuFragment).commit();
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            fm.beginTransaction().replace(R.id.fragment_container, menuFragment).commit();
+            fm.beginTransaction().replace(R.id.fragment_container2, statisticsFragment).commit();
+        } else {
+            fm.beginTransaction().replace(R.id.fragment_container, menuFragment).commit();
+        }
+        //fm.beginTransaction().add(R.id.expenseLayout, menuFragment).commit();
 
     }
 
-//    @Override
-//    public void onConfigurationChanged(Configuration newConfig) {
-//        super.onConfigurationChanged(newConfig);
-//        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-//            setContentView(R.layout.fragment_menu);
-//        } else if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//            setContentView(R.layout.fragment_menu_vertical);
-//        }
-//    }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        FragmentManager fm = getSupportFragmentManager();
+
+        Bundle arguments = new Bundle();
+        arguments.putString("user", user);
+
+        MenuFragment menuFragment = new MenuFragment();
+        menuFragment.setArguments(arguments);
+
+        StatisticsFragment statisticsFragment = new StatisticsFragment();
+        statisticsFragment.setArguments(arguments);
+
+        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+            }
+            fm.beginTransaction().replace(R.id.fragment_container, menuFragment).commit();
+        } else if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+            }
+            fm.beginTransaction().replace(R.id.fragment_container, menuFragment).commit();
+            fm.beginTransaction().replace(R.id.fragment_container2, statisticsFragment).commit();
+        }
+    }
 
     @Override
     public void onBackPressed(){
