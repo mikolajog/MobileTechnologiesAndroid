@@ -13,6 +13,10 @@ import android.widget.Toast;
 import java.util.regex.Pattern;
 
 public class Register extends AppCompatActivity {
+    /*
+    Class responsible for registration, validation email, password, calling db insertion to users
+     */
+
     DatabaseHelper db;
     EditText e1, e2, e3;
     Button b1, b2;
@@ -25,6 +29,7 @@ public class Register extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Init fields, buttons and set listeners
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         db = new DatabaseHelper(this);
@@ -33,6 +38,8 @@ public class Register extends AppCompatActivity {
         e3 = (EditText)findViewById(R.id.cpass);
         b1 = (Button)findViewById(R.id.register);
         b2 = (Button) findViewById(R.id.loginButton);
+
+        // Move to Login class: BACK
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,13 +47,15 @@ public class Register extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        // Register, add to db and move to Login class: REGISTER
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (validateEmail() & validatePassword() & validateConfirmPassword()) {
                     String s1 = e1.getText().toString();
                     String s2 = e2.getText().toString();
-                    Boolean chkemail = db.chkemail(s1);
+                    Boolean chkemail = db.checkIfEmailExists(s1);
                     if (chkemail) {
                         boolean insert = db.insertUser(s1, s2);
                         if (insert) {
@@ -66,6 +75,7 @@ public class Register extends AppCompatActivity {
     }
 
     private boolean validateEmail() {
+        // Check if email meets requirements
         String emailInput = e1.getText().toString().trim();
         if (emailInput.isEmpty()) {
             e1.setError("Field can't be empty");
@@ -80,6 +90,7 @@ public class Register extends AppCompatActivity {
     }
 
     private boolean validatePassword() {
+        // Check if password meets requirements
         String passwordInput = e2.getText().toString().trim();
         if (passwordInput.isEmpty()) {
             e2.setError("Field can't be empty");
@@ -94,6 +105,7 @@ public class Register extends AppCompatActivity {
     }
 
     private boolean validateConfirmPassword() {
+        // Check if both passwords same
         String passwordInput = e2.getText().toString().trim();
         String cpasswordInput = e3.getText().toString().trim();
         if(cpasswordInput.isEmpty()){

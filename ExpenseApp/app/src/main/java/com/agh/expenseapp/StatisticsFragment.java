@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StatisticsFragment extends Fragment {
+    /*
+    Class responisble for statistics
+     */
 
     Button b1;
     TextView tv1;
@@ -42,7 +44,6 @@ public class StatisticsFragment extends Fragment {
         arguments.putString("user", user);
 
         // initialization
-
         tv1 = v.findViewById(R.id.textSummary);
         tv2 = v.findViewById(R.id.balance);
 
@@ -81,6 +82,8 @@ public class StatisticsFragment extends Fragment {
             else tv1.setTextColor(Color.GREEN);
 
         }
+
+        // Dealing with orientation and setting fragments accordingly
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             b1 = v.findViewById(R.id.backButton);

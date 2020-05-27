@@ -12,6 +12,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class MenuFragment extends Fragment {
+    /*
+    Class of Menu, enables replacing other fragments like Earn, Spend, Statistic, Reset
+     */
 
     private Button b1,b2,b3,b4;
 
@@ -22,13 +25,16 @@ public class MenuFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_menu, container, false);
 
+        // PAssing user name
         Bundle bundle = this.getArguments();
         String user = bundle.get("user").toString();
-
         final Bundle arguments = new Bundle();
         arguments.putString("user", user);
 
-
+        /*
+        Buttons inits and Listeners on below buttons, in each we consider what orientation we have and based on that
+        we replace fragments in proper containers
+         */
 
         b1  = v.findViewById(R.id.spendButton);
 
@@ -68,7 +74,6 @@ public class MenuFragment extends Fragment {
             }
         });
 
-
         b3  = v.findViewById(R.id.statisticsButton);
 
         b3.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +93,6 @@ public class MenuFragment extends Fragment {
             }
         });
 
-
         b4  = v.findViewById(R.id.resetButton);
 
         b4.setOnClickListener(new View.OnClickListener() {
@@ -107,10 +111,6 @@ public class MenuFragment extends Fragment {
                 transaction.commit();
             }
         });
-
-
-
-
 
         return v;
     }

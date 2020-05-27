@@ -17,6 +17,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 public class SpendFragment extends Fragment {
+    /*
+    Class responsible for spending money in our app:
+     */
 
     private Button b1, b2;
     private EditText et1;
@@ -29,26 +32,26 @@ public class SpendFragment extends Fragment {
     private final int NOTIFICATION_ID = 001;
 
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_spend, container, false);
 
+        // DB helper
         db = new DatabaseHelper(getContext());
 
+        //Deal with user argument
         Bundle bundle = this.getArguments();
         final String user = bundle.get("user").toString();
 
         final Bundle arguments = new Bundle();
         arguments.putString("user", user);
 
-
-        b1 = v.findViewById(R.id.backButton);
         et1 = v.findViewById(R.id.amountCash1);
         et1.addTextChangedListener(new CurrencyTextWatcher(et1));
+
+        b1 = v.findViewById(R.id.backButton);
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +64,7 @@ public class SpendFragment extends Fragment {
             }
         });
 
+        // Notification when we insert money for first time going below 0.0 PLN we receive push notification
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), CHANNEL_ID);
         builder.setSmallIcon(R.drawable.ic_money_notification);
         builder.setContentTitle("MONEY WARNING!");
@@ -80,29 +84,30 @@ public class SpendFragment extends Fragment {
                 if (Double.parseDouble(result) < 0.0) {
                     flagBalance = false;
                 }
+                if(!et1.getText().toString().equals("")){
+                    db.insertNegativeBalance(user, et1.getText().toString(), selectedText);
 
-                db.insertNegativeBalance(user, et1.getText().toString(), selectedText);
-                // validating fields and adding to DB
+                    Toast.makeText(getContext(), "You've just spent money!", Toast.LENGTH_LONG).show();
 
-                if (Double.parseDouble(db.getBalanceSum(user)) <= 0 && flagBalance) {
-                    notificationManagerCompat.notify(NOTIFICATION_ID, builder.build());
+                    if (Double.parseDouble(db.getBalanceSum(user)) <= 0 && flagBalance) {
+                        notificationManagerCompat.notify(NOTIFICATION_ID, builder.build());
+                    }
+
+                    StatisticsFragment statisticsFragment = new StatisticsFragment();
+                    statisticsFragment.setArguments(arguments);
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    MenuFragment menuFragment = new MenuFragment();
+                    menuFragment.setArguments(arguments);
+
+                    int orientation = getResources().getConfiguration().orientation;
+                    if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                        transaction.replace(R.id.fragment_container2, statisticsFragment);
+                        transaction.commit();
+                    } else {
+                        transaction.replace(R.id.fragment_container, statisticsFragment);
+                        transaction.commit();
+                    }
                 }
-
-                StatisticsFragment statisticsFragment = new StatisticsFragment();
-                statisticsFragment.setArguments(arguments);
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                MenuFragment menuFragment = new MenuFragment();
-                menuFragment.setArguments(arguments);
-
-                int orientation = getResources().getConfiguration().orientation;
-                if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    transaction.replace(R.id.fragment_container2, statisticsFragment);
-                    transaction.commit();
-                } else {
-                    transaction.replace(R.id.fragment_container, statisticsFragment);
-                    transaction.commit();
-                }
-                Toast.makeText(getContext(), "You've just spent money!", Toast.LENGTH_LONG).show();
             }
         });
 

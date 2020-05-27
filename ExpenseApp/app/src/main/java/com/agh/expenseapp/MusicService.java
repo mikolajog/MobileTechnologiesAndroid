@@ -3,13 +3,15 @@ package com.agh.expenseapp;
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.IBinder;
-import android.provider.Settings;
+
 
 import androidx.annotation.Nullable;
 
 public class MusicService extends Service {
+    /*
+    Class enabling playing music
+     */
     private MediaPlayer player;
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {

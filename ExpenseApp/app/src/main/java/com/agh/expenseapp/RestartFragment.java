@@ -12,6 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 public class RestartFragment extends Fragment {
+    /*
+    Class responsible for dropping user's db in balance, enabling to start whole counting from scratch
+     */
 
     Button b1, b2;
     DatabaseHelper db;
@@ -22,13 +25,16 @@ public class RestartFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_restart, container, false);
 
+        // Handle user argument
         Bundle bundle = this.getArguments();
         final String user = bundle.get("user").toString();
-
         final Bundle arguments = new Bundle();
         arguments.putString("user", user);
+
+        // Init db
         db = new DatabaseHelper(getContext());
 
+        // Init and handle drop button considering portrait and horizontal orientation
         b2 = v.findViewById(R.id.dropButton);
 
         b2.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +58,8 @@ public class RestartFragment extends Fragment {
             }
         });
 
+
+        // Init and handle back button
         b1  = v.findViewById(R.id.backButton);
 
         b1.setOnClickListener(new View.OnClickListener() {
